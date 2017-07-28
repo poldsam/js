@@ -1,0 +1,15 @@
+
+.chapter-thumbnail {
+  margin-top: 10px;   /* add a margin */
+  white-space : pre;  /* preserve the original line breaks and spacing (content of the 
+  						 chapter is just text not HTML, so normally the line breaks would be ignored) */
+  overflow : hidden;  /* don't show a scroll bar when the text is too big to fit the box */
+  max-height: 150px;  
+  height : 150px;     
+  border-radius: 10px;/* rounded corners */ 
+}
+
+#mainViewer {
+  margin-top: 10px;   
+  white-space : pre;   /* preserve the original line breaks */
+}
