@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+     table
+    {
+        border: 2px solid black;
+        margin: auto;
+        margin-bottom: 30px;
+        height: 300px;
+      }
+
+    th { 
+          background-color: black;
+          color: white; 
+          }
+    td{
+        width: 8%;
+        text-align: center;
+
+    }
+
+</style>
+    <head>
+        <meta charset="utf-8">
+        <title>Edubright</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+        <!-- page tile -->
+        <div class="page-header">
+        <h1>Edubright</h1>
+        </div> 
+            <nav id="nav">
+                <ul class="nav nav-tabs nav-pills">
+                    <li id="home"><a href="index.html">Home</a></li>
+                    <li id="about"><a href="about.html">About Us</a></li>
+                    <li id="products"><a href="products.html">Products</a></li>
+                    <li id="catalog" class="active"><a href="catalog.html">Catalog of Products</a></li>
+                    <li id="order"><a href="order.html">Order Form</a></li>
+                    <li id="new"><a href="new.html">What's New?</a></li>
+                    <li id="faq"><a href="faq.html">FAQ</a></li>
+                    <li id="employ"><a href="employ.html">Employment</a></li>
+                    <li id="service"><a href="service.html">Customer Service</a></li>
+                </ul>
+            </nav> <!-- end of nav -->
+
+<script type="text/javascript">
+
+//creating objects
+function myProducts(category, desc, price, rush) 
+    {
+        this.category=category;
+        this.desc = desc;
+        this.price = price;
+        this.rush = rush;
+        this.display = display;
+    }
+
+    function display() 
+    {
+        document.write("<td>"+this.category+"</td>");
+        document.write("<td>"+this.desc+"</td>");
+        document.write("<td>"+this.price+"</td>");
+        document.write("<td>"+this.rush+"</td>");
+    }
+
+    var essay1 = new myProducts("Standard","Combines proofreading with an expert critique to help you strengthen your writing","$119","$30 Add-on");
+    var essay2 = new myProducts("Premium","Most comprehensive & best value – from initial topic brainstorm to finished essay","$229","$50 Add-on");
+    var recom1 = new myProducts("Standard","Combines editing, analysis and revision of recommendation letter","$139","$30 Add-on");
+    var recom2= new myProducts("Premium","Writing service if recommender requested drafting your own letter","$279","$50 Add-on");
+    var strat1 = new myProducts("Standard","Consulting and customized advice on application strategy","$99","$25 Add-on");
+    var strat2= new myProducts("Premium","Comprehensive service that includes unlimited application assistance","$79","$30 Add-on");
+
+
+    var essay = new Array(essay1,essay2);
+    var recom = new Array(recom1,recom2);
+    var strat = new Array(strat1,strat2);
+    var products = new Array(essay, recom, strat);
+    var heading = new Array("Category", "Description", "Price", "Rush Service");
+    var category = new Array("ESSAYS", "RECCOMENDATIONS", "STRATEGY");
+
+    function show() 
+
+    {   document.write("<h4><center>SERVICES AVAILABLE</center></h4><br>");
+        document.write("<table border><tr><td></td>"); //row start
+            for (i=0; i<heading.length; i++) 
+            {
+             document.write("<th>"); //header cell
+             document.write("<center>"+heading[i]+"</center>");
+             document.write("</th>"); //end of header
+            }
+            document.write("</tr>"); //end of row
+
+                for (i=0; i<products.length; i++) //3 products
+                {
+                    document.write("<tr>"); //new row
+                    document.write("<td rowspan="+products[i].length+">"); //spans products[i].length rows
+                    document.write("<strong>"+category[i]+"</strong>");
+                    document.write("</td>");
+
+                        for (j=0; j<products[i].length; j++) //products length is 2
+                        {
+                          products[i][j].display(); //display products
+                          document.write("</tr>"); //end of row
+                          
+                        }
+                    document.write("</tr>"); 
+                }
+        document.write("</table>"); //end of table
+    }
+
+show()
+</script>
+
+<br>
+<div class="panel-footer">
+<p><center>© 2017 Edubright</center></p>
+</div>
+</div> <!-- end of content  -->
+</body>
+</html>
+
+

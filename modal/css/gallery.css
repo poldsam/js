@@ -1,0 +1,19 @@
+.crop-img{
+  max-height:150px;
+  min-height: 150px;
+  max-width:240px;
+  min-height: 240px;
+}
+
+.large-img{
+  max-width:100%;
+}
+
+.carousel-img{
+    margin: auto;
+    padding: 10px;
+    max-height:300px;
+    max-width:100%;
+
+}
+

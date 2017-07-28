@@ -1,0 +1,146 @@
+<head>
+  <title>siteace</title>
+</head>
+
+<body>
+	<!-- navbar  - you will be putting the login functions here -->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        Site Ace  &nbsp; {{> loginButtons}} 
+	      </a>
+
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container">
+	</div>
+</body>
+
+
+
+<!-- added -->
+<template name="ApplicationLayout">
+	<div class="container">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
+  </div>
+</template>
+
+
+
+<template name="search">
+	 <div class="navbar-form navbar-right">
+	 	<form id=search>
+     		 <input type="text" id="searchValue" placeholder="Search...">
+  		</form>
+    </div>
+
+		<hr/>
+			<ol>
+			{{#each websites}}
+			{{>website_item}}
+			<br>
+			{{/each}}
+			</ol>
+</template>
+
+<template name="demo">
+	 <div class="navbar-form navbar-right">
+	 		<!-- <form id= demo>
+     			 <input type="text" id="demoValue" placeholder="Search...">
+  			</form> -->
+    	</div>
+    	<hr/>
+			
+			<ol>
+				<h3><a href="{{url}}">{{title}}</a></h3>
+				<p>
+				Description: {{description}}
+				</p>
+			</ol>
+
+			<div class="comment-section">
+ 				{{> commentsBox id=_id}}
+			</div>
+</template>
+
+<template name = "details">
+		<a href="/" class="btn btn-default">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		</a>
+
+		{{> demo}}
+</template>
+
+
+
+<!-- template that displays several website items -->
+<template name = "website_list">
+	<!-- <div class="container"> -->
+		{{> search}}
+	<!-- </div> -->
+</template>
+
+
+<template name="website_form">
+	
+ {{#if currentUser}}
+	<a class="btn btn-default js-toggle-website-form" href="#">
+  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+	</a>
+{{/if}}
+
+	<div id="website_form" class="hidden_div">
+		<form class="js-save-website-form">
+		  <div class="form-group">
+		    <label for="url">Site address</label>
+		    <input type="text" class="form-control" id="url" placeholder="http://www.mysite.com">
+		  </div>
+		  <div class="form-group">
+		    <label for="title">Title</label>
+		    <input type="text" class="form-control" id="title" placeholder="Mysite">
+		  </div>
+		    <div class="form-group">
+		    <label for="description">Description</label>
+		    <input type="text" class="form-control" id="description" placeholder="I found this site really useful for ...">
+		  </div>
+
+		  <button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+</template>
+
+
+
+
+<!-- template that displays individual website entries -->
+<template name="website_item">
+<li>
+	<a href="{{url}}">{{title}}</a>
+
+	
+	<p>
+		{{description}}
+	</p>
+	{{#if currentUser}}
+	<a href="#" class="btn btn-default js-upvote">
+		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+	</a>
+	<a href="#" class="btn btn-default js-downvote">
+		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+	</a>
+{{/if}}
+		Upvotes: {{upvotes}} Downvotes: {{downvotes}}
+        <p>Submitted by: <a href="#" >{{getUser createdBy}}</a> {{createdOn}}</p>
+        <a href="/details/{{_id}}" class="btn btn-success slide_from_left">Details</a>
+        {{#if currentUser}}
+		<a hfer="#" class="delete btn btn-danger slide_from_left">Delete</a>
+		{{/if}}
+
+
+	<!-- you will be putting your up and down vote buttons in here! -->
+</li>
+</template>

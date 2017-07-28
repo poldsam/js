@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Edubright</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+        label {
+            text-align: right;
+            vertical-align: top;
+            width: 37%;
+        }
+
+        form {
+            padding-top: 30px;
+        } 
+
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript">
+
+        // check for non blank and nonzero length. 
+        function validate() {
+            var nameFirst = document.form1.first.value;
+            var nameLast = document.form1.last.value;
+            var nameAddress = document.form1.address.value;
+            var nameCity = document.form1.city.value;
+            var nameState = document.form1.state.value;
+            var nameZip = document.form1.zip.value;
+            var namePhone = document.form1.phone.value;
+            var nameEmail = document.form1.email.value;
+            var nameCcnum = document.form1.ccnum.value;
+            var nameCctype = document.form1.cctype.value;
+            var nameCcexpire = document.form1.ccexpire.value;
+            var nameComment = document.form1.comment.value;
+
+            // names identified 
+            var nameCheck = ["first","last","address","city","state","zip","phone","email","ccnum","cctype","ccexpire","comment"];
+
+            // name that customer sees
+            var nameField = ["First Name","Last Name","Address","City","State","Zip","Phone","Email","Credit Card Number","Credit Card Type","Credit Card Expiration Date","Comment"];
+
+            // fileds to check
+            var toCheck = [nameFirst,nameLast,nameAddress,nameCity,nameState,nameZip,namePhone,nameEmail,nameCcnum,nameCctype,nameCcexpire];
+
+    // don't alert on every single field, wait for the user to click on the submit button to display an alert if there is an error
+    for (i = 0; i < toCheck.length; i++) { 
+        if(toCheck[i].length == 0){
+        alert(nameField[i] + " cannot be left blank");
+            // cursor is focused (pointed) to the first name input box and if there's any text in it, the text got selected (highlighted).
+            document.getElementById(nameCheck[i]).focus();
+            document.getElementById(nameCheck[i]).select();
+            return false;
+        }
+    
+        if (toCheck[i].replace(/\s/g, '').length == "0") {
+            alert(nameField[i] + " cannot be left empty");
+            document.getElementById(nameCheck[i]).focus();
+            document.getElementById(nameCheck[i]).select();
+            return false;
+        }
+
+
+    // must provide either a 5-digit zip code or a 5+4 zip code
+        if(nameField[i] == "Zip"){
+            var zipLength = toCheck[i].length;
+            if(zipLength > 5 && zipLength < 9 || (zipLength > 9)){
+            alert(nameField[i] + " must be either 5 or 9 digits long. Please enter " + nameField[i]);
+            document.getElementById(nameCheck[i]).focus();
+            document.getElementById(nameCheck[i]).select();
+            return false;
+            }
+        }
+
+    // Check for the exact format with the numbers. Use only one field for the phone
+        if(nameField[i] == "Phone"){
+            var pattern1 = /\(\d{3}\) \d{3}-\d{4}/; var pattern2 = pattern1.test(toCheck[i]);
+            if(!pattern2){
+            alert(" Please enter " + nameField[i] + " in the following format: (xxx) xxx-xxx");
+            document.getElementById(nameCheck[i]).focus();
+            document.getElementById(nameCheck[i]).select();
+            return false;
+            }
+        }
+        
+        // check for a 16 digit number
+        if(nameField[i] == "Credit Card Number"){
+            var cardLength = toCheck[i].length;
+            if(cardLength < 16){
+            alert(nameField[i] + " must be 16 digits long. Please enter " + nameField[i]);
+            document.getElementById(nameCheck[i]).focus();
+            document.getElementById(nameCheck[i]).select();
+            return false;
+            }
+        }    
+
+        // check for the format mm/yyyy. 
+        if(nameField[i] == "Credit Card Expiration Date"){
+            var pattern1 = /^\d{1,2}\/\d{4}$/;var pattern2 = pattern1.test(toCheck[i]);
+                if(!pattern2){
+                alert(nameField[i] + " must be in the correct format (mm/yyyy)");
+                document.getElementById(nameCheck[i]).focus();
+                document.getElementById(nameCheck[i]).select();
+                return false;
+            }
+    
+    // Make sure that the card is valid by comparing with the current date
+            var today = new Date();
+            var expiration = toCheck[i].substr(0,toCheck[i].indexOf('/'));
+            var expirationYear = toCheck[i].substr(toCheck[i].indexOf('/')+1);
+            var cardExpires = new Date();
+            cardExpires.setFullYear(expirationYear, expiration, 1);
+
+            if (cardExpires < today) {
+            alert("This credit card has expired!");
+            document.getElementById(nameCheck[i]).focus();
+            document.getElementById(nameCheck[i]).select();
+            return false;
+            }
+        }
+    }
+    
+}
+        
+// The main goal is to display the calculation of the price right away when a quantity is entered. 
+function myPrice(){
+
+    function subtotal1(){
+        var price1 = 119;
+        var price2 = 229;
+        var quantity1 = document.form1.standardEssay.value;
+        var quantity2 = document.form1.premiumEssay.value;
+        var totalStandardEssay = quantity1 * price1;
+        var totalPremiumEssay = quantity2 * price2;  
+        var totalEssay = totalStandardEssay + totalPremiumEssay;
+                
+        document.getElementById("essayPrice1").value = totalStandardEssay;
+        document.getElementById("essayPrice2").value = totalPremiumEssay;
+        document.getElementById("priceEssay").value = totalEssay;
+        return totalEssay;
+    }
+
+    function subtotal2(){
+        var price3 =139;
+        var price4 = 279;
+        var quantity3 = document.form1.standardRecs.value;
+        var quantity4 = document.form1.premiumRecs.value;
+        var totalStandRec = quantity3 * price3;
+        var totalPremRec = quantity4 * price4;
+        var totalRec = totalStandRec + totalPremRec;
+                                
+        document.getElementById("recPrice1").value = totalStandRec;
+        document.getElementById("recPrice2").value = totalPremRec;
+        document.getElementById("priceRecomm").value = totalRec;
+        return totalRec;
+    }
+            
+    function subtotal3(){
+        var price5 =99;
+        var price6 = 79;
+        var quantity5 = document.form1.strategy.value;
+        var quantity6 = document.form1.premStrategy.value;
+        var totalstrategyPrice = quantity5 * price5;
+        var totalpremStrategyPrice = quantity6 * price6;
+        var totalStrategy = totalstrategyPrice + totalpremStrategyPrice;
+                
+        document.getElementById("strategyPrice").value = totalstrategyPrice;
+        document.getElementById("premStrategyPrice").value = totalpremStrategyPrice;
+        document.getElementById("priceStrategy").value = totalStrategy;
+        return totalStrategy;
+    }
+            
+    function services(){
+        var totalEssays = subtotal1();
+        var totalRecommendations = subtotal2();
+        var totalStartegies = subtotal3();
+        var totalPrice = totalEssays + totalRecommendations + totalStartegies;
+        document.getElementById("servicesTotal").value = totalPrice;
+        return totalPrice;
+    }
+            
+    function myTaxes() {
+        var salesTax = 8.25/100;
+        var grandTotals = services();
+        var taxes = grandTotals * salesTax;
+        return taxes;
+    }
+
+    // don't add shipping and handling if the quantity is zero
+    function grandTotal() {
+        var start = 0;
+        var grandTotal = 0;
+        var orderServices = 0;
+        var orderServices = services();
+        var salestax = myTaxes();
+
+        if(orderServices > 0) {
+        document.getElementById("shipping").value = "3";
+        document.getElementById("salesTax").value = salestax;
+        start = 1;
+        }
+
+        else {
+        document.getElementById("salesTax").value = "0";
+        document.getElementById("shipping").value = "0"; 
+        
+        }
+                
+        var orderTotal = orderServices + salestax;
+        document.getElementById("orderTotal").value = orderTotal;
+                
+        if (start > 0){
+        var grandTotal = orderTotal + 3;
+        }                   
+                
+        document.getElementById("grandTotal").value = grandTotal;
+    } //end of grand total
+            
+    grandTotal();
+} //end of my price
+
+</script>
+    </head>
+    <body>
+        <div class="container">
+        <!-- page tile -->
+        <div class="page-header">
+        <a href="index.html"><h1>Edubright</h1></a>	
+        </div> 
+
+            <nav id="nav">
+                <ul class="nav nav-tabs nav-pills">
+                	<li id="home"><a href="index.html">Home</a></li>
+                    <li id="about"><a href="about.html">About Us</a></li> 
+                    <li id="products"><a href="products.html">Products</a></li>
+                    <li id="catalog"><a href="catalog.html">Catalog of Products</a></li>
+                    <li class="active" id="order"><a href="order.html">Order Form</a></li>
+                    <li id="new"><a href="new.html">What's New?</a></li>
+                    <li id="faq"><a href="faq.html">FAQ</a></li>
+                    <li id="employ"><a href="employ.html">Employment</a></li>
+                    <li id="service"><a href="service.html">Customer Service</a></li>
+                </ul>
+            </nav>
+
+<!-- form with the following fields -->
+<!-- use Post for the method and http://voyager.deanza.edu/~hso/cgi-bin/form420.cgi -->
+<!-- For all the fields, you set your own size and maximum length. -->
+
+
+
+<form style="background-color:#F0F0F0" name="form1" method="post" action="http://voyager.deanza.edu/~hso/cgi-bin/form420.cgi"onsubmit="return validate()">
+    <!-- include a hidden field containing your email address as the value with name=myemail. -->
+    <input type="hidden" name="myemail" value="poldsamkrist720@students.itu.edu">
+
+    <!-- First Name (name=first): check for non blank and nonzero length. -->
+    <label name = "first">First Name:</label>
+    <input type="text" id="first" name="first" maxlength="15" size="30"><br>
+    <!-- Last Name (name=last): check for non blank and nonzero length. -->
+    <label>Last Name:</label>
+    <input type="text" id="last" name="last" maxlength="15" size="30"><br>
+    <!-- Street Address (name=address): check for non blank and nonzero length. -->
+    <label>Street Address:</label>
+    <input type="text" id="address" name="address" maxlength="15" size="30"><br>
+    <!-- City (name=city): check for non blank and nonzero length. -->
+    <label>City:</label>
+    <input type="text" id="city" name="city"  maxlength="15" size="30"><br>
+    <!-- State (name=state): check for non blank and nonzero length. -->
+    <label>State:</label>
+    <input type="text" id="state" name="state"  maxlength="15" size="30"><br>
+    <!-- Zip (name=zip) --><!-- all must be numbers and check for the length.  -->
+    <!-- Char codes 48 to 57 represent the number keys 0 - 9 -->
+    <label>Zip:</label>
+    <input type="text" id="zip" name="zip"  maxlength="9" size="30" onkeypress='return event.charCode >= 48 && event.charCode <= 57'><br> 
+    <!-- Telephone number (name=phone): the format must be (xxx) xxx-xxxx.   -->
+    <label>Telephone Number:</label>
+    <input type="tel" id="phone"  name="phone" maxlength="14" size="30"><br>
+    <!-- EMail (name=email): check for non blank and nonzero length. -->
+    <label>Email:</label>
+    <input type="email" id="email"  name="email" maxlength="30" size="30"><br>
+    <!-- Credit card number (max length is 16) (name=ccnum): check for a 16 digit number. -->
+    <label>Credit Card Number:</label>
+    <input type="text" id="ccnum"  name="ccnum" maxlength="16" size="30" onkeypress='return event.charCode >= 48 && event.charCode <= 57'><br>
+    <!-- Select list for credit card type (name=cctype) -->
+    <label>Credit Card Type:</label>
+    <select name="cctype" size="3" multiple="multiple">
+        <option class="selectClass" value="Amex" selected>American Express</option>
+        <option class="selectClass" value="Master" selected>MasterCard</option>
+        <option class="selectClass" value="Visa">Visa</option></select><br>
+<!-- Credit card expiration date (format is mm/yyyy) (name=ccexpire): check for the format mm/yyyy. -->
+    <label>Credit Card Expiration Date:</label>
+    <input type="text" id="ccexpire"  name="ccexpire" placeholder="mm/yyyy" maxlength="7" size="30"><br>
+    <!-- Comment (name=comment) (use multi-line input) -->
+    <!-- For the comment field, you can set your own number of columns and rows. -->
+    <label>Comments:</label>
+    <textarea name="comment" rows="6" cols="50"></textarea>
+
+    <!-- Then create a list of products that the user can order. -->
+    <br><br><center>
+        <table border='1'><caption>LIST OF PRODUCTS</caption>
+            <tr>
+                <th><label>Category</label></th>
+                <th><label>Description</label></th>
+                <th><label>Unit Price</label></th>
+                <th><label>Quantity</label></th>
+                <th><label>Total Price</label></th>
+            </tr>
+            <tr>
+                <td rowspan="2">ESSAYS</td>
+                <td>Standard</td><td>$119</td>
+                <td> <input type="text" id="standardEssay" name="standardEssay" size="8" onkeyup="myPrice()"></td>
+                <td> <input type="text" name="essayPrice1" id="essayPrice1" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>Essay</td><td>$229</td>
+                <td><input type="text" id="premiumEssay" name="premiumEssay" size="8" onkeyup="myPrice()"></td>
+                <td><input type="text" id="essayPrice2" name="essayPrice2"  readonly="readonly"></td>
+            </tr>
+                
+            <tr>
+                <td colspan="4">Subtotal:</td>
+                <td><input type="text" id="priceEssay" name="priceEssay" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td rowspan="2">RECCOMENDATIONS</td>
+                <td>Standard</td><td>$139</td>
+                <td> <input type="text" id="standardRecs" name="standardRecs"  size="8" onkeyup="myPrice()"></td>
+                <td> <input type="text" name="recPrice1" id="recPrice1" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>Premium</td><td>$279</td>
+                <td><input type="text" id="premiumRecs" name="premiumRecs"  size="8" onkeyup="myPrice()"></td>
+                <td><input type="text" id="recPrice2" name="recPrice2" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td colspan="4">Subtotal:</td>
+                <td><input type="text" name="priceRecomm" id="priceRecomm" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td rowspan="2">STRATEGY</td>
+                <td>Standard</td><td>$99</td>
+                <td><input type="text" id="strategy"  name="strategy" size="8" onkeyup="myPrice()"></td>
+                <td><input type="text" id="strategyPrice" name="strategyPrice" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>Premium</td><td>$79</td>
+                <td> <input type="text" id="premStrategy" name="premStrategy" size="8" onkeyup="myPrice()"></td>
+                <td> <input type="text" id="premStrategyPrice" name="premStrategyPrice"  readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td colspan="4">Subotal:</td>
+                <td><input type="text" name="priceStrategy" id="priceStrategy" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td colspan="4">Total:</td>
+                <td><input type="text" id="servicesTotal" name="servicesTotal" readonly="readonly"></td>
+            </tr>
+             <tr>
+                <td colspan="4">Sales Tax</td>
+                <td><input type="text" id="salesTax" name="salesTax"  readonly="readonly"></td>
+            </tr>           
+            <tr>
+                <td colspan="4">Total:</td>
+                 <td><input type="text" id="orderTotal"  name="orderTotal" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td colspan="4">Shipping and Handling</td>
+                <td><input type="text" id="shipping" name="shipping" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><b>Grand Total:</b></td>
+                <td><input type="text" id="grandTotal"  name="grandTotal" readonly="readonly"></td>
+            </tr>  
+    </table>
+    <br>   
+    <div>
+        <input type="submit" value="Submit" onclick="return validate()">
+        <input type="reset" value="Reset">
+    </div>     
+    <br>
+    </form>
+
+    <div class="panel-footer">
+        <p><center>© 2017 Edubright</center></p>
+    </div>
+	</div>  
+    </body>
+    </html>
+
+
+

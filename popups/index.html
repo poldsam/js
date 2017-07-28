@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+</style>
+<head>
+<title>Lab8</title>
+  <meta charset="utf-8">
+</head>
+<body>
+
+<style type="text/css">
+      body { 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background: url("jasmine.jpg") no-repeat center center fixed;
+
+    }
+</style>
+
+<script type="text/javascript">
+function myMovies (genre, title, actor, info) {
+        this.Genre = genre;
+        this.Title = title;
+        this.Actor = actor;
+        this.Info = info;
+      }
+
+  var movieWin = null;
+  var actorWin = null;
+  var Jasmine = new myMovies("Comedy", "Blue Jasmine", "http://www.imdb.com/name/nm0000949", "http://www.imdb.com/title/tt2334873/?ref_=fn_al_tt_1");
+  var myWin = window.open("", "myWin", "height=400,width=500, left=300, top=250, resizable");
+  myWin.document.write("<body style='background-image: url(movie.jpg);background-size: 100%; color: white'>");
+  myWin.document.write("<h2 style='color: white'>WHAT ABOUT THE MOVIE?</H2>"
+    +"<p style='color: white'>Jasmine French used to be on the top of the heap as a New York socialite, but now is returning to her estranged sister in San Francisco utterly ruined. As Jasmine struggles with her haunting memories of a privileged past bearing dark realities she ignored, she tries to recover in her present. Unfortunately, it all proves a losing battle as Jasmine's narcissistic hangups and their consequences begin to overwhelm her. In doing so, her old pretensions and new deceits begin to foul up everyone's lives, especially her own.</p>"
+    +"<p><a href='javascript:opener.movieWinOpener()'>CLICK HERE TO ACCESS THE MOVIE WINDOW</a></p>"
+    +"<p><a href='javascript:opener.actorWinOpener()'>CLICK HERE TO ACCESS THE ACTOR WINDOW</a></p>"
+    +"<p><a href='javascript:opener.movieWin.close()'>CLICK HERE TO CLOSE THE MOVIE WINDOW</a></p>"
+    +"<p><a href='javascript:opener.actorWin.close()'>CLICK HERE TO CLOSE THE ACTOR WINDOW</a></p>"
+    +"<p><a href='javascript:opener.myWin.close()'>CLICK HERE TO CLOSE THIS WINDOW</a></p>"
+    );
+
+function movieWinOpener(){
+  var url = Jasmine.Info;
+  movieWin=window.open(url, "movieWin","height=400, width= 600, top=100, left= 200,resizable" );
+  movieWin.focus();
+};
+
+function actorWinOpener(){
+  var url = Jasmine.Actor;
+  actorWin=window.open(url, "actorWin","height=400, width= 600, top=100, left= 200,resizable" );
+  actorWin.focus();
+
+  actorWin.document.write("<br><b>Cate Blanchett</b><br>An Australian actress and theatre director. She has received international acclaim and many accolades, including six AACTA Awards, two Academy Awards, three Screen Actors Guild Awards, three Golden Globe Awards, and three BAFTA Awards.<br>"
+     +"<p><a href='javascript:opener.actorWinOpener()'>CLICK HERE FOR MORE INFORMATION</a></p>"
+    );
+};
+
+</script>
+</head>
+<body>
+<div>
+  <br><br>
+  <h1><center>BLUE JASMINE</center></h1>
+</div>
+
+</body>
+</html>

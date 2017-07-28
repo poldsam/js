@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <title>Lab13</title>
+  <meta charset="utf-8">
+
+<style type="text/css">
+
+	body {
+	font-family: sans-serif;
+	}
+
+	#random{
+		border-radius: 0 600px;
+		border: 12px;
+		color:white;
+		text-align: center;
+		margin-top: 20px;
+		height: 500px;
+	}
+
+</style>
+
+<script type="text/javascript">
+var r,g,b,hexr,hexg,hexb,hex;
+
+//Upon loading the page, use the Math object to randomly generate a Web color in hex format and set the background color with this random color.
+
+ function myFunction(){
+ 	// First generate a random number between 0 and 255 for Red, Green and Blue. 
+ 	r = Math.floor(Math.random() * 255);
+ 	g = Math.floor(Math.random() * 255);
+ 	b = Math.floor(Math.random() * 255);
+
+ 	// Then convert each number to hex number by using toString(16) (e.g. if the varibale for Red is r, then convert by doing r.toString(16))
+ 	hexr = r.toString(16);
+ 	hexg = g.toString(16);
+ 	hexb = b.toString(16);
+
+ 	// the length of the generated number must be checked to see if it's less than 2. If so, concatenate 0 to it
+ 	if (hexr.length == 1) {hexr = hexr.concat("0")};
+	if (hexg.length == 1) {hexg = hexg.concat("0")};
+	if (hexb.length == 1) {hexb = hexb.concat("0")};
+
+	// Finally the hex number is created by contatenating RGB
+	var hex = "#".concat(hexr.concat(hexg.concat(hexb)));
+ 	// Set the background color to the randomly generated color. element.setAttribute("style", "background-color: red;");
+	random.setAttribute("style", "background:"+ hex);
+
+	// Display a text and the hex number for the color.
+	p1.innerHTML="RGB"+"("+r+","+g+","+b+")";
+	p2.innerHTML="HEX: " + hex;
+}
+
+</script>
+</head>
+
+<body>
+<!-- Upon loading the page, use the Math object to randomly generate a Web color in hex format and set the background color with this random color. -->
+<br><br>
+<div id="random">
+	<br><br><br><br><br><br>
+	<p>BACKGROUND-COLOR IS RANDOMLY GENERATED</p>
+	<p id="p1"></p>
+	<p id="p2"></p>
+	<a href="javascript:myFunction()">CLICK TO RANDOM</a>
+</div>
+</body>
+</html>

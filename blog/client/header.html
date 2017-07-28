@@ -1,0 +1,38 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Blog</title>
+  <link rel="alternate" type="application/rss+xml"
+  title="My Portfolio" href="/rss/posts">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<template name="header">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">Globetrotter</a>
+      </div> <!-- label -->
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <a href="/tips">Travel Tips</a>
+          </li>
+          <li>
+            <a href="things">Things I Love</a>
+          </li>
+          <li>
+            <a href="{{blogPathFor "blogIndex"}}">Travel Blog</a>
+          </li>
+<!--           <li>
+            <a href="{{blogPathFor "blogAdmin"}}">Admin Area (must login)</a>
+          </li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- standard for this navbar -->
+          {{> loginButtons}}
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>

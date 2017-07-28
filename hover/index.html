@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab19</title>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            background: url("image/taust.jpg") no-repeat;
+            background-size: 100%; 
+            color: black;
+        }
+
+      h2{
+      	color: #F5D750;
+       }
+
+      #text1{
+        color: red;
+       }
+
+       a:hover { 
+        background-color: grey;
+      }
+
+</style>
+</head>
+
+<body>
+	<center><h2><b>NATIONAL GEOGRAPHIC CONTEST</b></h2>
+		<table width="900px" height="550px" border="1">
+			<col width="200px">
+  		<col width="700px">
+        <!-- Have at least three links  -->
+			<tr><td align="center">
+        <a href="" id ="text" onmouseover="display('The Independence Day', 'image/pilv.jpeg')" onmouseout="display('','image/ng.jpg')" style="color:#F5D750">First Place Winner</a><br>
+        <a href=""onmouseover="display('Diver in Magic Kingdom', 'image/vesi.jpg')" onmouseout="display('','image/ng.jpg')" style="color:#F5D750">Third Place Winner</a><br>
+        <a href=""onmouseover="display('Beautiful Day', 'image/kiik.jpeg')"  onmouseout="display('','image/ng.jpg')" style="color:#F5D750">Merit Prize Winner</a><br><br><br>
+        <div id = "text1"></div></td><br><br><br>
+        
+        <!-- placeholder for the image (set a with and height). Initially the placeholder is blank. -->
+        <td><img id = "img" src="" alt="" border=3 height=550px width=700px></img>
+      </td></tr>
+		</table>
+
+<script type="text/javascript">
+// Create a function with two arguments: text and image. It displays the image in the placeholder and displays the text under the links. When the mouse moves over a link, call the function by passing the text and image.When the mouse moves out, call the function by passing a blank text and a different image. This image is the same when the mouse is out from all the links.
+
+    function display (text, img){
+      document.getElementById("text1").innerHTML=text;
+      document.getElementById('img').src=img;
+     
+    }
+
+</script>
+</center>
+</body>
+</html>
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Animals Gallery</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/assignment.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.min.js"></script>
+        <script src="js/AnimalsData.js"></script>
+        <script src="js/assignment.js"></script>
+    </head>
+    <body>
+        
+        <div class="container">
+        <!-- page tile -->
+        <div class="page-header">
+        <h1>Animals Gallery </h1>
+        </div> 
+
+            <nav id="nav">
+                <ul class="nav nav-tabs nav-pills">
+                    <li id="categories"><a href="#">Categories</a></li>
+                    <li id="animals"><a href="#">All animals</a></li>
+                </ul>
+            </nav>
+
+            <!-- that's where content is rendered -->
+            <div id="content" class="row">
+            </div>
+
+        </div> <!-- end of container -->
+
+<!-- script comments: bootstrap class thumbnail adds a nice border -->
+<!--   to access list in a list: {{animals.2.image1}}, category list element animals, third element (2. object) in a list called animals, item named image2 -->
+        <script id="categories-template" type="text/x-handlebars-template">
+
+            {{#each category}}
+                <div data-index="{{@index}}" class="col-sm-6 col-md-3 category">
+                    <a href="#" class="thumbnail">
+                        <div class="caption">
+                            <h3>{{name}}</h3>
+                        </div>
+                        <img class="category-thumb" src="{{animals.2.image1}}" alt="{{name}}">
+                    </a>
+
+                </div>
+            {{/each}}
+        </script>
+
+<!--comment:  .media-list − from bootstrap, If preparing a list where the items will be part of an unordered list, use a class. useful for comment threads or articles lists. -->
+        <script id="animals-template" type="text/x-handlebars-template">
+
+            <ul class="media-list">
+                <h1>{{name}}</h1>
+
+                {{#each animals}}
+                    <li class="media">
+                    <div class="media-left media-middle">
+                        <img class="media-object" src="{{image1}}" alt-="{{name}}">
+                        <img class="media-object" src="{{image2}}" alt-="{{name}}">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{name}}</h4>
+                        <p>{{description}}</p>
+                    </div>
+                    </li>
+                {{/each}}
+            </ul>
+
+        </script>
+    </body>
+</html>

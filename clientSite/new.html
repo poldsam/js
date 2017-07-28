@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Edubright</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <style type="text/css">
+        /*create an id with a stlye: font size, weight, color; width, height, align text center, background color, position absolute with top and left.*/
+        #box {
+            font-size: 16px;
+            font-weight: 600;
+            font-color: #000080;
+            text-align: center;
+            background-color: grey;
+            position: absolute;
+            top: 200px;
+            left: 150px;
+            width: 220px;
+            height: 350px;
+        }
+
+        </style>
+    
+        </head>
+        <body>
+
+        <div class="container">
+        <!-- page tile -->
+        <div class="page-header">
+        <a href="index.html"><h1>Edubright</h1></a>
+        </div> 
+
+            <nav id="nav">
+                <ul class="nav nav-tabs nav-pills">
+                    <li id="home"><a href="index.html">Home</a></li>
+                    <li id="about"><a href="about.html">About Us</a></li> 
+                    <li id="products"><a href="products.html">Products</a></li>
+                    <li id="catalog"><a href="catalog.html">Catalog of Products</a></li>
+                    <li id="order"><a href="order.html">Order Form</a></li>
+                    <li class="active" id="new"><a href="new.html">What's New?</a></li>
+                    <li id="faq"><a href="faq.html">FAQ</a></li>
+                    <li id="employ"><a href="employ.html">Employment</a></li>
+                    <li id="service"><a href="service.html">Customer Service</a></li>
+                </ul>
+            </nav><br>
+
+            
+            <b><p style="text-align:center">New Articles</b><br><br>
+            <!-- create an id with a stlye: -->
+            <div id="box">
+                    <h2>This is what's new today</h2>
+                    <img src="img/new.jpg">
+                    Hope you find these tips helpful!<br>
+            </div>
+
+            <a href = "https://bigfuture.collegeboard.org/get-in/essays/tips-for-writing-an-effective-application-essay-college-admissions"><p style="text-align:center">Tips for Writing an Effective Application Essay</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-started/building-a-support-network/the-scoop-whats-a-mentor-and-how-do-i-get-one">The Scoop: What’s a Mentor and How Do I Get One?</a><br>
+            <a href = "https://bigfuture.collegeboard.org/find-colleges/how-to-find-your-college-fit/college-search-step-by-step">College Search Step-by-Step</a><br>
+            <a href = "https://bigfuture.collegeboard.org/find-colleges/campus-visit-guide/campus-visits-before-you-go-college-visit">Campus Visits: Before You Go</a><br>
+            <a href = "https://bigfuture.collegeboard.org/find-colleges/campus-visit-guide/why-visit-colleges">Why Visit Colleges?</a><br>
+            <a href = "https://bigfuture.collegeboard.org/find-colleges/campus-visit-guide/students-speak-how-campus-visits-helped-me-choose">Students Speak: How Campus Visits Helped Me Choose</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/essays/students-speak-how-i-conquered-the-application-essay">Students Speak: How I Conquered the Application Essay</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/essays/8-tips-for-crafting-your-best-college-essay">8 Tips for Crafting Your Best College Essay</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/essays/3-ways-to-approach-common-college-essay-questions">3 Ways to Approach Common College Essay Questions</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/applying-101/quick-guide-the-anatomy-of-the-college-application">Quick Guide: The Anatomy of the College Application</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/applying-101/5-things-you-need-to-know-about-college-admission">5 Things You Need to Know About College Admission</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/applying-101/college-applications-how-to-begin-admissions">College Applications: How to Begin</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/applying-101/college-applications-how-to-begin-admissions">How to Finalize Your College List</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/applying-101/college-applications-how-to-begin-admissions">College Applications: How to Begin</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/interviews/college-interviews-the-basics">College Interviews: The Basics</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/interviews/what-to-do-before-and-after-your-college-interview-admissions">What to Do Before and After Your College Interview</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/interviews/college-interviews-practice-questions-and-strategies">College Interviews: Practice Questions and Strategies</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/testing/how-to-prepare-for-admission-tests">How to Prepare for the SAT</a><br>
+            <a href = "https://bigfuture.collegeboard.org/get-in/testing/admission-test-myths">Admission Test Myths</a><br>
+             <a href = "https://bigfuture.collegeboard.org/find-colleges/college-101/types-of-colleges-the-basics">Types of Colleges: The Basics</a><br><br>
+            </div>
+            </div>
+
+            <!-- footer -->
+            <div class="panel-footer">
+                <p><center>© 2017 Edubright</center></p>
+        
+            </div>
+
+
+        <script type="text/javascript">
+        //moving the box. have the top and left values.
+        document.onclick = function(event) {
+            var box = document.getElementById("box");
+            // new style for the top and left values 
+            box.style.top = event.pageY + "px"; 
+            box.style.left = event.pageX + "px";
+                    
+            };
+        </script>
+    </body>
+    </html>
+

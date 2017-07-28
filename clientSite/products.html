@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style type="text/css">
+      #footer {
+        position: relative;
+        margin-top : 90px;
+      }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <title>Edubright</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+        <!-- page tile -->
+        <div class="page-header">
+        <a href="index.html"><h1>Edubright</h1></a>
+        </div> 
+
+            <nav id="nav">
+                <ul class="nav nav-tabs nav-pills">
+                    <li id="home"><a href="index.html">Home</a></li>
+                    <li id="about"><a href="about.html">About Us</a></li> 
+                    <li class="active" id="products"><a href="products.html">Products</a></li>
+                    <li id="catalog"><a href="catalog.html">Catalog of Products</a></li>
+                    <li id="order"><a href="order.html">Order Form</a></li>
+                    <li id="new"><a href="new.html">What's New?</a></li>
+                    <li id="faq"><a href="faq.html">FAQ</a></li>
+                    <li id="employ"><a href="employ.html">Employment</a></li>
+                    <li id="service"><a href="service.html">Customer Service</a></li>
+                </ul>
+            </nav><br>
+            <br>
+
+    <script type="text/javascript">
+
+    function product(image,description){
+      this.image = image;
+      this.description = description;
+      this.display = display
+    }
+
+    function display(){
+        document.write("<img src='" + this.image + "' style='width: 10%'>"+ "&nbsp&nbsp&nbsp&nbsp&nbsp" + this.description);
+    };  
+
+    
+    function func1(){
+        var product1= new product("img/cap.png", "Essays: Proofreading and expert feedback on your college, graduate school or scholarship application essay.");
+        product1.display();
+    };
+
+    function func2(){
+        var product2= new product("img/envelope.png", "Recommendations: Ensure your letter of reference fully conveys the quality and impact of your personal accomplishments.");
+        product2.display();
+    };
+
+
+    function func3(){
+        var product3= new product("img/strategy.png", "Strategy: Individualized strategies for improving your application to make a powerful case for your admission.");
+        product3.display();
+    };
+
+
+
+    function selectProduct(){
+      var firstName = prompt("What is your first name?", "Kristi");
+      var lastName = prompt("What is your last name?", "Poldsam");
+      alert("Welcome "+ firstName +" " + lastName+"!"+"\nWe are glad to have you and we look forward to serving you!");
+      var firstName=prompt("Please choose the service by entering 1, 2 or 3 \n1 - essays \n2 - recommendations \n3 - strategy");
+
+      if(firstName==1){func1(); } 
+        else if(firstName==2){func2(); }
+        else if(firstName==3){func3(); }
+        else { document.write("Invalid entry, please try again!");}
+    }
+
+    selectProduct()
+
+</script>
+<!-- footer -->
+<div class="panel-footer" id="footer">
+    <p><center>© 2017 Edubright</center></p>
+</div>
+</div>
+</body>
+</html>
+
+
+
+  

@@ -1,0 +1,28 @@
+
+
+img {
+    width: 99%;
+    height: 50%;
+    text-align: center;
+}
+
+.cap{
+  width: 33%px;
+  height: 200px;
+  text-align: center;
+}
+
+.logo{
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+
+.nav-title {
+  color:gray;
+  padding-left: 15px;
+}
+
+#nav {
+    padding-bottom: 16px;
+}

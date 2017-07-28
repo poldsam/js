@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+</style>
+<head>
+<title>Midterm</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+		  body { 
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover;
+		  background: #F9F7E7;
+		}
+
+            div{
+                background: #F9F7E7;
+                text-align: center;
+            }
+		</style>
+</head>
+<body>
+	<div>
+		<h1 style="text-align:center"> <font size="8" color="red">Welcome!</h1>
+		<img src="clown.gif">
+	</div>
+
+
+<script type="text/javascript">
+	function popup() {
+		var myWin = window.open("", "myWin", "height=375,width=475,resizable, top=200,left=200, dependent");
+		// the dependent variable allows the closing of the popup
+		// when the main window that creates the popup closes
+
+		myWin.focus(); // put the popup on the front of all the windows
+		return myWin;
+	}
+
+	var myWin = popup();
+	myWin.document.write( 
+		"<html>"
+		+"<head>"
+		+"<script type='text/javascript'>"
+		+"function loadURL(url) {"
+		+"opener.window.location=url;"
+		+"window.close();"	
+		+"}"
+		+"<\/script>"
+		+"</head>"
+		+"<body style='background-color:yellow;'>"
+
+		+"<h1>Cruise...Hot Deals</h1>"
+		+"<ul>"
+		+"<li><a href='javascript:opener.displayList(opener.cruises);'>Display Cruises</a></li>"
+		+"<li><a href='javascript:loadURL(\"https://www.royalcaribbean.com\")'>Royal Caribbean</a></li>"
+		+"<li><a href='javascript:loadURL(\"https://www.carnival.com\")'>Carnival</a></li>"
+		+"<li><a href='javascript:loadURL(\"https://disneycruise.disney.go.com\")'>Disney Cruise</a></li>"
+		+"</ul>"
+		+"</body>"
+		+"</html>"
+		);
+		 
+	
+        function Cruise (date, dest, cruiseDesc, cruiseUrl, shipName, shipDesc, shipUrl, price) {
+		this.date = date;
+		this.dest = dest;
+		this.cruiseDesc = cruiseDesc;
+		this.cruiseUrl = cruiseUrl;
+		this.shipName = shipName;
+		this.shipDesc = shipDesc;
+		this.shipUrl = shipUrl;
+		this.price = price;
+		};
+		
+	
+//objects
+		var cruise1 = new Cruise(
+			"April 5, 2017",
+			"3-Night Bahamas Cruise",
+			"Port Canaveral is your gateway to the Space Coast and the attractions of Central Florida. Visit the Kennedy Space Center, swim at Cocoa Beach or enjoy a fun-filled day at one of Orlando world-famous theme parks  ",
+			"https://secure.royalcaribbean.com/cruises/3NightBahamasCruise-MJ03S084?currencyCode=USD&sCruiseType=CO&sailDate=09%2F29%2F2017",
+			"Majesty of the Seas",
+			"Majesty of the Seas has been made over from bow to stern to offer more splashes, more excitement, and more family fun ",
+			"https://secure.royalcaribbean.com/cruises/3NightBahamasCruise-MJ03S084/about-ship?currencyCode=USD&sAccessibility=false&sailDate=09%2f29%2f2017&singleSailingMode=false",
+			"$278");
+					
+		var cruise2 = new Cruise(
+			"Mar 6, 2017",
+			"4-Day Baja Mexico Cruise",
+			"Catalina Island, a.k.a. The Island of Romance. There’s nothing more romantic than having a dream. Visions of beauty, perfection and surreal experiences. Hop in a kayak and paddle through secret coastlines and coves, while pairing adventure with fun exercise. Imagine waking up every day to oceanfront views  ",
+			"https://www.carnival.com/itinerary/4-day-baja-mexico-cruise/los-angeles/inspiration/4-days/lam/?Military=N&PastGuest=N&Senior=N&numGuests=2&sailDate=03062017",
+			"Carnival Inspiration",
+			"Carnival Inspiration is a Fantasy-class cruise ship. Carnival ship inspires guests to have a great time and a memorable vacation ",
+			"https://www.carnival.com/cruise-ships/carnival-inspiration.aspx",
+			"$295");
+
+	
+		var cruise3 = new Cruise(
+			"Aug 2, 2017",
+			"5-Night Alaskan Cruise",
+			"Discover historic towns, majestic wildlife and the magical allure of nature. Outdoor adventure and picturesque scenery will enchant all who embark on a magical, Alaskan Cruise aboard the Disney Wonder. Discover exciting ports featuring prehistoric glaciers, gold-mining relics and eclectic shopping  ",
+			"https://disneycruise.disney.go.com/select-stateroom/DW1575;entityType=cruise-sailing;destination=dcl/",
+			"Disney Wonder",
+			"Imagine a place where families can reconnect, adults can recharge and kids can immerse themselves in fantastical worlds only Disney could create. Renowned for its classic design, modern innovation and timeless whimsy, the Disney Wonder is home to 11 decks overflowing with restaurants, pools, recreation and more ",
+			"https://disneycruise.disney.go.com/ships/wonder/",
+			"$3290");
+
+	
+	//array
+		var cruises = [cruise1, cruise2, cruise3];
+
+	
+		function displayList(cruises) {
+		var displayTable =
+		"<body style='background-color:beige;'><h1 style='text-align:center'>Information About Our Cruises</h1>"
+		+"<table style='border: 3px solid black; width:100% '>"
+		+"<tbody>"
+		+"	<tr>"
+		+"	<th style='border: 1px solid black;padding:10px;'>Departs</th>"
+		+"	<th style='border: 1px solid black;padding:10px;'>Destination</th>"
+		+"	<th style='border: 1px solid black;padding:10px;'>Ship</th>"
+		+"	<th style='border: 1px solid black;padding:10px;'>Price from</th>"
+		+"	</tr>"
+
+		for (var i in cruises) {
+			displayTable += 
+			"<tr>"
+			+"	<td style='border: 1px solid black;padding:10px;'>"
+			+	cruises[i].date
+			+"	</td>"
+			+"	<td style='border: 1px solid black;padding:10px;'>"
+			+	"<a href='javascript:loadDesc(\""+cruises[i].cruiseDesc+"\",\""+cruises[i].cruiseUrl+"\")'>"
+			+	cruises[i].dest
+			+"	</a>"
+			+"	</td>"
+			+"	<td style='border: 1px solid black;padding:10px;'>"
+			+	"<a href='javascript:loadDesc(\""+cruises[i].shipDesc+"\",\""+cruises[i].shipUrl+"\")'>"			
+			+	cruises[i].shipName
+			+"	</a>"
+			+"	</td>"
+			+"	<td style='border: 1px solid black;padding:5px;'>"
+			+	cruises[i].price
+			+"	</td>"
+			+"</tr>"
+		}
+
+		displayTable+= "</tbody></table></body>"
+		document.write(displayTable);
+		}
+		
+	
+	function loadDesc(desc, url) {
+
+		if(myWin == null || myWin.closed) {
+			myWin = window.open("", "myWin", "height=300,width=400,resizable,left=200,top=200,scrollbars=1, dependent");
+		};
+
+		myWin.focus();
+		myWin.document.close();
+		myWin.document.write( 
+			"<html>"
+			+"<body style='background-color:#FFC300;'>"
+			+"<p>"
+			+desc
+			+"<a href='javascript:opener.popupWindow(\""+url+"\",\"\");'>Learn More</a>"		
+			+"</p>"
+			+"</body>"
+			+"</html>"
+		);		
+		}
+		
+	
+		function popupWindow(url) {
+			popUp = window.open(url, "popUp",
+						"height=400,width=500,resizable,left=30,top=40,scrollbars=1,dependent");
+			popUp.focus();
+		};
+
+    
+</script>
+</body>
+</html>

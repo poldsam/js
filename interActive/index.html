@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Final</title>
+    <style type="text/css">
+      body {
+          font-family: sans-serif;
+          background: url("img/store.jpeg") no-repeat;
+          background-size: 100%; 
+          color: black;
+          text-align: center;
+      }
+
+      h5 {
+      	color: green;
+      }
+
+      #box {
+        font-size: 20px;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 500;
+        color: red;
+        text-align: center;
+        vertical-align: middle;
+        background-color: #ffe680;
+        margin: auto;
+        width: 110px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 8px;
+        border: 1px solid #ffffb3;
+            -ms-transform: rotate(20deg); 
+            -webkit-transform: rotate(20deg); 
+            transform: rotate(20deg); 
+            -webkit-box-shadow:0 0 40px orange; 
+            -moz-box-shadow: 0 0 40px orange; 
+            box-shadow:0 0 40px orange;
+
+            /*add gradient look*/
+            background: #ffe680; /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient(left, #ffffb3 , #ffe680); 
+            background: -o-linear-gradient(right, #ffffb3, #ffe680); 
+            background: -moz-linear-gradient(right, #ffffb3, #ffe680); 
+            background: linear-gradient(to right, #ffffb3 , #ffe680);
+
+      }
+
+      #tool {
+        height: 120px;
+        width: 80px;
+        text-align: center;
+        text-align: center;
+        vertical-align: middle;
+        /*position: absolute;*/
+        margin-left: 160px;
+        margin-top: 80px;
+        line-height: 30px;
+      }
+
+      #tool img {
+        width: 100%;
+        height: 100%; 
+        position: relative;
+      }
+
+      #tooltip{
+        margin: auto;
+        text-align: center;
+        vertical-align: middle;
+      }  
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        color: blue;
+        text-align: center;
+        vertical-align: middle;
+        margin-left: -60px;
+        margin-top: 60px;
+        /*opacity: 0;*/
+        /*transition: opacity 1s;*/
+      }
+
+      .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        margin: auto;
+        vertical-align: middle;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+        /*opacity: 1;*/
+        vertical-align: middle;
+      }
+
+</style>
+</head>
+
+<script type="text/javascript">
+// Countdown to Spring Sale with the clock ticking every second
+var time;
+function clock(){
+    var now = new Date();
+    var sale = "04/13/2018";
+    var difference = Date.parse(sale) - Date.parse(now);
+    var rmonths = difference % (24*60*60*1000*365); //months remaining
+    var leftDays = Math.floor(rmonths / (24*3600*1000));
+    var leftHours = Math.floor((rmonths % (24*3600*1000))/ 3600000);
+    var leftMinutes = Math.floor((rmonths - leftDays * 24*3600*1000 - leftHours*3600000) / 60000);
+    var leftSeconds = Math.floor((rmonths - leftDays * 24*3600*1000 - leftHours*3600000 - leftMinutes*60000)/ 1000);
+    var days = leftDays;
+        if (days < 10) {var daysale = "0" + days.toString();} else {var daysale = days.toString();
+    };
+    var hours = leftHours;
+        if (hours < 10) {var hoursale = "0" + hours.toString();} else {var hoursale = hours.toString();
+    };
+    var minutes = leftMinutes;
+        if (minutes < 10) {var minutesale = "0" + minutes.toString();} else {var minutesale = minutes.toString();
+    };
+    var seconds = leftSeconds;
+        if (seconds < 10) {var secondsale = "0" + seconds.toString();} else {var secondsale = seconds.toString();
+    };
+    time = daysale + " days " + hoursale + ":" + minutesale +":" + secondsale;
+    var timesale = document.getElementById("div2");
+    timesale.childNodes[0].nodeValue = time;
+    setTimeout('clock()', 1000);
+};
+</script>
+
+<body>
+<br><br><br>
+<div id = "div1">
+  <h5>Countdown to Spring Sale April 13, 2018&nbsp;<br>
+    <span id="div2">00:00:00:00</span>
+  </h5>
+</div>
+
+<section>
+  <img id = "img" onmouseover="display('img/flower.jpg')" onmouseout="display('')"  src="" alt="" height=50px width=280px>
+  </img>
+    <div id="box"></div><br>
+    <br>
+<!-- On the floor, when the mouse is over, a tool tip is displayed -->
+  <div id="tooltip" class="tooltip" style="height:300px; width:400px;" style="position:absolute;">
+      <span class="tooltiptext" style="position:absolute;" onclick="getImage()";>Please click to see <br>sales or stop<br>rotation</span><br><br>
+      <div id = "tool"></div>
+  </div>
+</section>
+
+<!-- Then there are rotating texts in an inclined box about the sales. -->
+<script type="text/javascript">
+    var intervalHandle = null;
+
+    function getText() {
+      var texts = new Array();
+      texts[0] = "Spring Sale";
+      texts[1] = "Save Date";
+      texts[2] = "April 13";
+      var box = document.getElementById('box');
+      var index = (Math.floor(Math.random() * 3) + 0);
+      box.innerHTML = texts[index];
+      setTimeout('getText()', 1000);
+    }
+
+// On top of it when the mouse is moved over, an image of flowers is displayed and when the mouse is out the image disappears (background image). 
+    function display (img){
+      document.getElementById('img').src=img;
+    };
+
+// Click on tooltip loads the rotating items. If clicked again, the rotation stops. Click again, the rotation starts. When the mouse is out, the tooltip is gone.
+      var images = ['img/image0.png','img/image1.png', 'img/image2.png',];
+      var img = document.createElement('img');
+      document.getElementById('tool').appendChild(img);
+      var index = 0;
+      var count = "on";
+      var intervalHandle = null;
+
+    function load() {
+      count = "off";
+      var img = document.getElementById('tool').getElementsByTagName('img')[0]
+      img.src = images[index];
+      index++;
+      index = index % images.length; // if last image then go back to first image
+    }
+
+    function getImage(){
+    if (count === "on"){
+      load();
+      count = "off";
+      intervalHandle = setInterval(load,1000);
+      
+    }
+    
+     else {
+      count = "on";
+      clearInterval(intervalHandle);
+     }
+      
+  };
+</script>
+</body>
+<script type="text/javascript">
+  clock();
+  getText();
+</script>
+</html>
+
+

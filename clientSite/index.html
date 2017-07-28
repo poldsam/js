@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Edubright</title>
+        <style type="text/css">
+
+
+        #clock, #greeting, #quotes {
+            text-align: center;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        
+        #position{
+            text-align: center;
+        }
+        table {
+          font-size: 1.2em;
+          text-align: center;
+        }
+
+        th, td{
+          width:80px;
+          text-align: center;
+          font-size: 1.2em;
+        }
+
+        /*p:nth-of-type(2) {
+            background: red;
+        }*/
+        tr:nth-of-type(even){
+          background: #BFC9CA;
+        }
+
+        tr:nth-of-type(odd){
+          background:#839192;
+        }
+
+        </style>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <script type="text/javascript">
+
+        var quotes
+
+        // A real time clock
+        function clockFunction() {
+            var today = new Date();
+            var hours = today.getHours();
+            if (hours < 10){ zero = "0"; hours = zero.concat(hours)};  
+            var minutes  = today.getMinutes();
+            if (minutes < 10) {zero = "0"; minutes = zero.concat(minutes)};  
+            var seconds = today.getSeconds();
+            if (seconds < 10) {zero = "0"; seconds = zero.concat(seconds)}; 
+            var div = document.getElementById("clock");
+            div.innerText = "Time - " + hours + " : " + minutes + " : " + seconds;
+        }
+
+        function greetingFunction() {
+            var today = new Date();
+            var hours = today.getHours();
+            var div1 = document.getElementById("border");
+            var div2 = document.getElementById("greeting");
+            // Greetings according to the time of the day: A different color background according to the greetings.
+            if (hours <= 6 && hours >= 0) {
+                div1.style.backgroundColor = "Bisque ";
+                div2.innerText = "What are you doing that early?";
+                
+            }
+            else if (hours > 6 && hours < 12) {
+                div1.style.backgroundColor = "Grey";
+                div2.innerText = "Good Morning!";
+                
+            }
+
+            else if (hours >= 12 && hours < 18) {
+                div1.style.backgroundColor = "AliceBlue";
+                div2.innerText = "Good Afternoon!";
+                
+            }
+            else {
+                div1.style.backgroundColor = "#0e0e3f";
+                div1.style.color = "white";
+                div2.innerText = "Good Evening!";
+            }
+        };
+
+
+        // A random quote each time the page is loaded (use at least 4 quotes).
+        function quoteFunction() {
+            var quotes = ['"Learning is experience. Everything else is just information." - Albert Einstein', '"Genius is 1% talent and 99% percent hard work…." -Albert Einstein', '"Once we accept our limits, we go beyond them." -Albert Einstein', '"Necessity is the mother of all invention." - Albert Einstein']
+            var index = (Math.floor(Math.random() * 4));
+            var div = document.getElementById("quotes");
+            div.innerText = quotes[index];
+        }
+        
+
+        // A calendar for the current month and year (e.g. if the page is loaded on November 17, 2012, display the calendar with the highlighted day).
+        function calendarFunction() {
+            var today = new Date(); 
+            var months = ["January", "Februrary", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"];
+            var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; //# of days in a month
+            
+            var dayToday = today.getDay(); 
+            var monthToday = today.getMonth(); 
+            var dateToday = today.getDate(); 
+            var yearToday = today.getFullYear(); 
+            start = dateToday; 
+
+            while (start > 7) 
+                start = start -7;
+                start = dayToday - start + 1;
+
+            if (start < 0) 
+                start = start + 7; 
+            // writing the table
+            document.write("<table align=center>");
+            document.write("<tr>")
+            document.write("<td align=center colspan=7>")
+            document.write(months[monthToday] + " " + yearToday)
+            document.write("</td></tr><tr>");
+            document.write("<div id='position'><td>Sun</td>");
+            document.write("<td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td></div>");
+            document.write("</tr><tr>");
+          
+
+            for (i=0;i<start;i++) {
+                document.write("<td> </td>");
+            }
+
+            count = 1;
+
+            while (count <= days[monthToday]) {
+                for (start=start;start<7;start++) {
+                    document.write("<td>");
+
+                    for (pikkus=0;pikkus<days.length;pikkus++) {
+                        if (days[pikkus] != null) {
+                            if ((days[pikkus][0] == monthToday + 1) && (days[pikkus][1] == count)) {
+                                document.write(days[pikkus][2]);
+                            }
+                        }
+                    }
+
+                    if (count == dateToday) {document.write("<span style='color:blue'>");}
+                    if (count <= days[monthToday]) {document.write(count);}
+                    else {document.write(" ");}
+
+                    if (count==dateToday) {document.write("</span>");}
+                    document.write("</td></td>");
+                    count++;
+                }
+
+                    document.write("</tr><tr>");
+                    start=0;
+            }
+                    document.write("</table>");
+    }
+
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="container">
+        <!-- page tile -->
+        <div class="page-header">
+        <h1>Edubright</h1>
+        </div> 
+            <nav id="nav">
+                <ul class="nav nav-tabs nav-pills">
+                    <li id="home" class="active"><a href="index.html">Home</a></li>
+                    <li id="about"><a href="about.html">About Us</a></li>
+                    <li id="products"><a href="products.html">Products</a></li>
+                    <li id="catalog"><a href="catalog.html">Catalog of Products</a></li>
+                    <li id="order"><a href="order.html">Order Form</a></li>
+                    <li id="new"><a href="new.html">What's New?</a></li>
+                    <li id="faq"><a href="faq.html">FAQ</a></li>
+                    <li id="employ"><a href="employ.html">Employment</a></li>
+                    <li id="service"><a href="service.html">Customer Service</a></li>
+                </ul>
+            </nav> <!-- end of nav -->
+            <div id="content" class="row">
+
+
+             <div id="border">
+                <p id="clock"></p><p id="greeting"></p><p id="quotes"></p>
+
+             <script type="text/javascript">
+
+                clockFunction(); greetingFunction(); quoteFunction(); calendarFunction();
+
+            </script>
+
+             <br><br>  
+            
+            <img src="img/school1.jpg" alt="home" id="image"/>
+
+            </div>
+
+            <div class="row">
+                
+            <br><br>    
+
+                <div class="col-sm-4">
+                <div class = "cap">
+                    <img src="img/cap.png" alt="essays" class="logo"/>
+                    <center><b>ESSAYS</b>
+                    <br><br>
+                    Proofreading and expert feedback on your college, graduate school or scholarship application essay.</center>
+                </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class = "cap">
+                    <img src="img/envelope.png" alt="recommendations" class="logo"/>
+                    <center><b>RECOMMENDATIONS</b>
+                    <br><br>
+                    Ensure your letter of reference fully conveys the quality and impact of your personal accomplishments.</center>
+                </div>
+                </div>
+               
+                <div class="col-sm-4">
+                    <div class = "cap">
+                    <img src="img/strategy.png" alt="strategy" class="logo"/>
+                    <center><b>STRATEGY</b>
+                    <br><br>
+                    Individualized strategies for improving your application to make a powerful case for your admission.</center>
+                    </div>
+               
+                </div>
+            </div> <!-- end of row -->
+            </div> <!-- end of content -->
+
+        <br>
+
+        <div class="panel-footer">
+                <p><center>© 2017 Edubright</center></p>
+        </div>
+        </div> <!-- end of container -->
+    </body>
+    </html>
+
+

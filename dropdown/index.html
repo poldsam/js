@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Lab20</title>
+<style type="text/css">
+    body {
+        font-family: sans-serif;
+        background: url("img/frames.jpg") no-repeat;
+        background-size: 100%; 
+        color: black;
+        text-align: center;
+        margin: 10;
+    }
+
+</style>
+</head>
+<body>
+<!-- Use form to create 2 select boxes: -->
+<form>
+<!-- The first one is the event with two options. -->
+<select id="event" onchange="load(this)" size="3" >
+    <option value="0">National Geography</option>
+    <option value="1">Animals</option>
+    <option value="2">Nature</option>
+</select>
+<!-- The second one is the images box that is empty at the beginning. The name "Images" cannot be selected. It's disabled.-->
+<select id="images" onchange="show(this)" onclick="show(this)" multiple>
+    <option value="0" disabled>Images</option>
+    <option value="1"></option>
+    <option value="2"></option>
+    <option value="3"></option>
+</select><br><br>
+
+</form>
+<iframe id="frame1" style="border: 5px; width: 100%; height: 800px; border:none; margin:0; padding:0; scrolling="yes""></iframe>
+
+<script type="text/javascript">
+
+// When an event is selected, three image names are loaded in the Images box.
+function createImage(img, name){this.image = img; this.name = name;};
+
+var animal1 = new createImage("img/tiger.jpg","Tiger");
+var animal2 = new createImage("img/bear.jpg","Bear");
+var animal3 = new createImage("img/mantis.jpg","Mantis");
+var animals = [animal1, animal2, animal3];
+
+var nature1 = new createImage("img/mountain.jpg","Mountain");
+var nature2 = new createImage("img/falls.jpg","Falls");
+var nature3 = new createImage("img/balloon.jpg","Balloon");
+var nature = [nature1, nature2, nature3];
+
+var ng = [];
+
+var array1= [ng, animals, nature];
+// When an event is selected, three image names are loaded in the Images box.
+function load(event) {
+    var i = 0; i = event.selectedIndex;   
+// When the name "Event" is selected clear the Images box.
+    if (i == 0){
+        var frame = document.getElementById("frame1");
+        frame.src = "";
+    }
+                
+    var pildid = array1[i];
+    for (var i = 0; i < pildid.length; i++){
+        document.forms[0].images.options[i+1].innerText = pildid[i].name;
+        document.forms[0].images.options[i+1].value = pildid[i].image;
+    }
+}
+
+// When an image is selected, the image is displayed in the iframe.
+function show(images){
+    var frame = document.getElementById("frame1");
+    var i = images.selectedIndex;
+    frame.src = document.forms[0].images.options[i].value;
+}
+
+</script>
+</body>
+</html>
+
+

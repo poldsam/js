@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+      background: url(img/movietheatre.jpg) no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            margin: auto;
+            color: white;
+            font-size: 18px
+          }
+
+    table {
+        border-collapse: collapse;
+        border: 2px solid white;
+        margin: auto;
+        margin-bottom: 30px;
+      }
+    td {
+        width: 240px;
+        text-align: center;
+      }
+
+    h2 {
+        width: 450px;
+        margin: 20px auto;
+        color: white;
+        background-color: white;
+        border-radius: 5px;
+
+      }
+
+    img{
+      width: 180px;
+      height: 250px;
+      margin: 10px 10px 10px 10px;
+    }
+
+
+    .inventory{
+      margin: 10px 10px 10px 10px;
+      text-align: center;
+    }
+
+</style>
+<head>
+<title>Lab7</title>
+  <meta charset="utf-8">
+</head>
+<body>
+
+<script type="text/javascript">
+
+  function myMovies (genre, title, rating, price, photo) {
+        this.Genre = genre;
+        this.Title = title;
+        this.Rating = rating;
+        this.Price = price;
+        this.Photo = photo;
+        this.display = display;
+      }
+      
+  function display() {
+    document.write('<div class="inventory">')
+    document.write("<br>");
+    document.write("Title: " + this.Title + "<br><br>");
+    document.write("Rating: " + this.Rating + "<br><br>");
+    document.write("Price: " + this.Price + "<br></div>");
+    document.write('<img src="');
+    document.write(this.Photo + '"><div class="inventory">');
+
+  };
+
+        var Arrival = new myMovies("Science Fiction", "Arrival", "PG-13", "$12", "img/arrival.jpg");
+        var Gravity = new myMovies("Science Fiction", "Gravity", "PG-13", "$10", "img/gravity.jpg");
+        var Knight = new myMovies("Science Fiction", "The Dark Knight", "PG-13", "$8", "img/knight.jpg");
+        var Looper = new myMovies("Science Fiction", "Looper", "R", "$10", "img/looper.jpg");
+        var scienceFiction = new Array(Arrival, Gravity, Knight, Looper);
+
+        var Lalaland = new myMovies("Comedy", "La La Land", "PG-13", "$13", "img/lalaland.jpg" );
+        var Up = new myMovies("Comedy", "Up", "PG", "$11", "img/up.jpeg" );
+        var Artist = new myMovies("Comedy", "The Artist", "PG-13", "$10", "img/artist.jpg" );
+        var Zootopia = new myMovies("Comedy", "Zootopia", "PG", "$12", "img/zoo.jpg" );
+        var Comedy = new Array(Lalaland, Up, Artist, Zootopia);
+
+        var Rogue = new myMovies("Action", "Rogue One", "PG-13", "$11", "img/rogue.jpeg");
+        var Skyfall = new myMovies("Action", "Skyfall", "PG-13", "$10", "img/sky.png");
+        var Grit = new myMovies("Action", "True Grit", "PG-13", "$12", "img/grit.jpg");
+        var Captain = new myMovies("Action", "Captain America", "PG-13", "$11", "img/captain.jpg");
+        var Action = new Array (Rogue, Skyfall, Grit, Captain);
+
+        var myInventory = new Array(scienceFiction, Comedy, Action);
+
+        document.write("<h2 style=color:black><center>Movies Inventory</center></h2>");
+        document.write("<h3><p><center>Number of genres in the inventory: " + myInventory.length + "</center></p></h3>");
+        document.write("<table border><tr><th>Science Fiction</th><th>Comedy</th><th>Action</th></tr>"); //heading row
+
+        for (var i = 0; i <= myInventory.length; i++) {
+          document.write("<tr><td>"); //new row
+          scienceFiction[i].display();
+          document.write("</td><td>");
+          Comedy[i].display();
+          document.write("</td><td>");
+          Action[i].display();
+          document.write("</td></tr>");//end of row
+      }     
+          document.write("</table>");
+    
+</script>
+</body>
+</html>

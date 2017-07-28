@@ -1,0 +1,24 @@
+body { 
+	padding-bottom: 70px; 
+}
+
+.bottom{
+	position:bottom:10px;
+	text-align: center;
+}
+
+
+.text{
+	font-family: courier;
+
+}
+
+
+.title{
+	color: #ff6976;
+}
+
+
+.head{
+	font-size: 20px;
+}
